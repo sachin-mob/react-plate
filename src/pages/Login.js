@@ -1,19 +1,35 @@
 import React from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import { login } from '../services/apiService';
-export class Login extends React.Component{
+import { action1 } from '../actions/actions';
+import { connect } from 'react-redux';
+
+class Login extends React.Component{
     constructor(props){
         super(props);
         this.state={}
     }
+    static getDerivedStateFromProps(nextProps, prevState){
+      console.log("login getderivedpro",nextProps,prevState)
+      
+        //Return a new state
+        return {
+              action : nextProps.action
+        };
+    }
+    componentDidUpdate(prevProps){
+        //console.log("login page did update",prevProps,this.props)
+    }
     login(){
+      this.props.actionCall("test");
       login({}).then(data => {
-          console.log(data);
+        console.log(data);
       });
     }
     render(){
         return(
             <div className='login-form' style={{height:"100vh"}}>
+            {"Redux action props: "+(this.props.action)}
             <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
               <Grid.Column style={{ maxWidth: 450 }}>
                 <Header as='h2' color='teal' textAlign='center'>
@@ -43,3 +59,17 @@ export class Login extends React.Component{
         )
     }
 }
+
+// const mapStateToProps = state => ({
+//   action: state.firstReducer.firstActionFirstRedValue
+// })
+const mapStateToProps=(state)=>{
+  return { action: state.firstReducer?state.firstReducer.firstActionFirstRedValue:'' };
+}
+const mapDispatchToProps = dispatch => ({
+  actionCall: text => dispatch(action1(text))
+});
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login)

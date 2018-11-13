@@ -1,3 +1,12 @@
+# React Redux implementation
+# API Call service
+# Http Service
+# Alert Notification Service
+# React Router 4 routes
+# Protected Route implementation
+
+# Check login component for redux implementation
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

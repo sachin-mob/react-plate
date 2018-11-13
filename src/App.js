@@ -7,7 +7,7 @@ import 'semantic-ui-css/semantic.min.css';
 import { Home } from './pages/Home';
 import { ContactUs } from './pages/ContactUs';
 import { AboutUs } from './pages/AboutUs';
-import { Login } from './pages/Login';
+import Login from './pages/Login';
 import {Signup} from './pages/Signup';
 import {Main} from './layouts/main';
 import {Auth} from './layouts/auth';
@@ -16,6 +16,8 @@ import { PrivateRoute } from './components/PrivateRoute';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+
 
 class App extends Component {
   constructor(props){

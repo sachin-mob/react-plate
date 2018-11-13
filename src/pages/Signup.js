@@ -1,10 +1,22 @@
 import React from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import {Link} from 'react-router-dom';
+import { action1 } from '../actions/actions';
+import { connect } from 'react-redux';
+
 export class Signup extends React.Component{
     constructor(props){
         super(props);
         this.state={}
+    }
+    static getDerivedStateFromProps(nextProps, prevState){
+        console.log("signup getderivedpro",nextProps,prevState)
+          return {
+                action : nextProps.action
+          };
+    }
+    componentDidUpdate(prevProps){
+        console.log("signup page did update",prevProps,this.props)          
     }
     render(){
         return(
@@ -45,3 +57,15 @@ export class Signup extends React.Component{
         )
     }
 }
+
+const mapStateToProps=(state)=>{
+  console.log("In Signup",state);
+  return { action: state.firstReducer?state.firstReducer.firstActionFirstRedValue:'' };
+}
+const mapDispatchToProps = dispatch => ({
+  action1: text => dispatch(action1(text))
+});
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Signup)
